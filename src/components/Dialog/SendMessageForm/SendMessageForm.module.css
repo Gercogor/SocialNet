@@ -1,0 +1,23 @@
+.inputMessage {
+    width: 310px;
+    min-height: 25px;
+    resize: none;
+    outline: none;
+    -moz-appearance: none;
+    padding: 15px 5px 15px 15px;
+    margin-right: 50px;
+    border: 1px solid yellow;
+    overflow: auto;
+}
+
+.formMessage {
+    position: relative;
+    max-width: 385px;
+}
+
+.sendMessage {
+    position: absolute;
+    right: 0;
+    top: 35%;
+    bottom: 35%;
+}

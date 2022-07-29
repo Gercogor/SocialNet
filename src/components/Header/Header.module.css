@@ -1,0 +1,22 @@
+.header {
+    grid-area: header;
+    background-color: pink;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+  
+.pic {
+    width: 60px;
+    height: 60px;
+}
+
+.loginBlock {
+    padding: 0 20px;
+}
+
+.logOut {
+    cursor: pointer;
+    font-size: 12px;
+    margin-top: 8px;
+}

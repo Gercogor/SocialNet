@@ -1,0 +1,28 @@
+.inputPost {
+    width: 385px;
+    min-height: 25px;
+    resize: none;
+    outline: none;
+    -moz-appearance: none;
+    border: 1px solid green;
+    overflow: auto;
+    padding: 10px 10px;
+}
+
+.formPost {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    max-width: 385px;
+    align-items: center;
+}
+
+.sendPost {
+    /*position: absolute;*/
+    margin: 15px 0;
+    width: 385px;
+}
+
+.error {
+    border: 2px solid red;
+}

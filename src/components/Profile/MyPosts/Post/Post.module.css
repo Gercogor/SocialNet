@@ -1,0 +1,39 @@
+.post {
+    padding: 10px 0;
+}
+.postBar{
+    display: flex;
+    align-items: center;
+}
+
+.avatarPicWrapper {
+    margin: 10px 10px;
+}
+
+.avatarPic {
+    width: 50px;
+    height: 50px;
+}
+
+.mainBlock {
+
+}
+
+.statusBar {
+    margin-top: 10px;
+    display: flex;
+}
+
+.likesPicWrapper {
+    margin: 0 10px 0 10px;
+}
+
+.likesPic {
+    width: 20px;
+    height: 20px;
+}
+
+/*.post img {*/
+/*    width: 100%;*/
+/*    height: 100%;*/
+/*}*/
