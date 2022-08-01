@@ -4,7 +4,9 @@ import {
     setUsers,
     setPage,
     setTotalCount,
-    getUsersThunkCreator, followThunk,
+    getUsersThunkCreator,
+    followThunk,
+    setPageSize,
 } from "../../redux/usersReducer";
 
 import {
@@ -31,6 +33,7 @@ let mapDispatchToProps =
     {
         setUsers,
         setPage,
+        setPageSize,
         setTotalCount,
         getUsersThunkCreator,
         followThunk,

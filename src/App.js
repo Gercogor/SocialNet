@@ -34,12 +34,13 @@ function App(props) {
                         <Nav/>
                         <main className='app-wrapper-content'>
                             <Routes>
+                                <Route path="/" element={<Navigate to={props.id?`/profile/`+props.id:`/login`}/>}/>
+                                <Route path="/profile" element={<Navigate to={props.id?`/profile/`+props.id:`/login`}/>}/>
                                 <Route path="/profile/:id" element={<ProfileContainer/>}/>
                                 <Route path="/profile/null" element={<Navigate to={props.id?`/profile/`+props.id:`/login`}/>}/>
-                                <Route path="/profile" element={<Navigate to={props.id?`/profile/`+props.id:`/login`}/>}/>
                                 <Route path="/dialogs" element={<Dialogs/>}/>
-                                <Route path="/users" element={<UsersContainer/>}/>
                                 <Route path="/dialogs/:id" element={<Messenger/>}/>
+                                <Route path="/users" element={<UsersContainer/>}/>
                                 <Route path="/login" element={props.id?<Navigate to={`/profile`}/>:<Login/>}/>
                             </Routes>
                         </main>

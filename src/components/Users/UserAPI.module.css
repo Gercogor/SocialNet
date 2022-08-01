@@ -5,7 +5,8 @@
 }
 
 .pagesList {
-    max-width: 450px;
+    display: flex;
+    justify-content: center;
 }
 
 .pagesList>span {
@@ -14,10 +15,16 @@
     padding: 10px 10px;
 }
 
+.countPerPage {
+    margin: 5px 0 0 40px;
+    text-align: center;
+}
+
 .pagination {
     list-style-type: none;
     display: flex;
     align-items: center;
+    padding: 0;
 }
 
 .prevBtn,

@@ -16,6 +16,12 @@ class UsersAPI extends React.Component {
         this.props.getUsersThunkCreator(page, this.props.pageSize);
     }
 
+    onUserPerPageChanged = (event) => {
+        this.props.setPageSize(event.target.value);
+        this.props.getUsersThunkCreator(this.props.currentPage, event.target.value);
+    }
+
+
     componentDidMount() {
         this.props.getUsersThunkCreator(this.props.currentPage, this.props.pageSize);
     }
@@ -44,6 +50,17 @@ class UsersAPI extends React.Component {
                         subContainerClassName={"pages"}
                         activeLinkClassName={styles.selectedPage}
                     />
+                    <div className={styles.countPerPage}>
+                        <p>Users per page</p>
+                        <select
+                            defaultValue={"5"}
+                            onChange={this.onUserPerPageChanged}
+                        >
+                            <option value="1">1</option>
+                            <option value="5">5</option>
+                            <option value="10">10</option>
+                        </select>
+                    </div>
                 </div>
                 {
                     this.props.isFetching
@@ -62,7 +79,6 @@ class UsersAPI extends React.Component {
                             }
                         </div>
                 }
-
             </>
 
         )

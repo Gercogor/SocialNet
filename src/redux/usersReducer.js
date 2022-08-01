@@ -3,10 +3,12 @@ import {followAPI, userAPI} from "../components/API/API";
 const SHOW_MORE = 'SHOW_MORE';
 const FOLLOW = 'FOLLOW';
 const SET_USERS = 'SET_USERS';
+const SET_PAGE_SIZE = 'SET_PAGE_SIZE';
 const SET_CURRENT_PAGE = 'SET_CURRENT_PAGE';
 const SET_TOTAL_COUNT = 'SET_TOTAL_COUNT';
 const TOGGLE_IS_FETCHING = 'TOGGLE_IS_FETCHING';
 const TOGGLE_IS_FOLLOWING = 'TOGGLE_IS_FOLLOWING';
+
 
 let initialState = {
     users: [],
@@ -42,6 +44,11 @@ export const usersReducer = (state = initialState, action) => {
                 ...state,
                 users: [...action.users],
             };
+        case SET_PAGE_SIZE:
+            return {
+                ...state,
+                pageSize: action.pageSize,
+            }
         case SET_TOTAL_COUNT:
             return {
                 ...state,
@@ -77,6 +84,13 @@ export const setUsers = (users) => {
     return {
         type: SET_USERS,
         users,
+    }
+}
+
+export const setPageSize = (pageSize) => {
+    return {
+        type: SET_PAGE_SIZE,
+        pageSize,
     }
 }
 

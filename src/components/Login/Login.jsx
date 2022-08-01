@@ -19,7 +19,7 @@ const Login = (props) => {
                 initialValues={{
                     remember: false,
                     email: `repcat1@mail.ru`,
-                    password: 123456
+                    password: '123456'
                 }}
                 render={(props) => (
                     <form className={styles.loginForm} action="" onSubmit={props.handleSubmit}>
