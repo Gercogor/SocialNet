@@ -2,8 +2,6 @@ import React, {useEffect} from 'react';
 import Header from './components/Header/Header';
 import Nav from './components/Nav/Nav';
 import './App.css';
-import Dialogs from "./components/Dialog/Dialogs";
-import Messenger from "./components/Message/Message";
 import {
     BrowserRouter,
     Routes,
@@ -16,7 +14,10 @@ import Login from "./components/Login/Login";
 import {connect} from "react-redux";
 import {initializeApp} from "./redux/appReducer";
 import Loader from "./components/Loader/Loader";
+import LazyLoadHoc from "./components/hoc/lazyLoadHoc";
 
+const Dialogs = React.lazy(() => import('./components/Dialog/Dialogs'));
+const Messenger = React.lazy(() => import("./components/Message/Message"));
 
 function App(props) {
 
@@ -28,20 +29,24 @@ function App(props) {
         <div className="app-wrapper">
             {
                 props.isInitializing
-                ? <Loader/>
-                :<BrowserRouter>
+                    ? <Loader/>
+                    : <BrowserRouter>
                         <Header/>
                         <Nav/>
                         <main className='app-wrapper-content'>
                             <Routes>
-                                <Route path="/" element={<Navigate to={props.id?`/profile/`+props.id:`/login`}/>}/>
-                                <Route path="/profile" element={<Navigate to={props.id?`/profile/`+props.id:`/login`}/>}/>
+                                <Route path="/" element={<Navigate to={props.id ? `/profile/` + props.id : `/login`}/>}/>
+                                <Route path="/profile"
+                                       element={<Navigate to={props.id ? `/profile/` + props.id : `/login`}/>}/>
                                 <Route path="/profile/:id" element={<ProfileContainer/>}/>
-                                <Route path="/profile/null" element={<Navigate to={props.id?`/profile/`+props.id:`/login`}/>}/>
-                                <Route path="/dialogs" element={<Dialogs/>}/>
-                                <Route path="/dialogs/:id" element={<Messenger/>}/>
+                                <Route path="/profile/null"
+                                       element={<Navigate to={props.id ? `/profile/` + props.id : `/login`}/>}/>
+                                {/*<Route path="/dialogs" element={<Dialogs/>}/>*/}
+                                <Route path="/dialogs" element={<LazyLoadHoc Component={Dialogs}/>}/>
+                                {/*<Route path="/dialogs/:id" element={<Messenger/>}/>*/}
+                                <Route path="/dialogs/:id" element={<LazyLoadHoc Component={Messenger}/>}/>
                                 <Route path="/users" element={<UsersContainer/>}/>
-                                <Route path="/login" element={props.id?<Navigate to={`/profile`}/>:<Login/>}/>
+                                <Route path="/login" element={props.id ? <Navigate to={`/profile`}/> : <Login/>}/>
                             </Routes>
                         </main>
                     </BrowserRouter>
