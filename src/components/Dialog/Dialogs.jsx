@@ -7,8 +7,6 @@ import {addMessageActionCreator} from "../../redux/dialogsReducer";
 import {connect} from "react-redux";
 import {withAuthHoc} from "../hoc/withAuthHoc";
 import {compose} from "redux";
-import LazyLoadHoc from "../hoc/lazyLoadHoc";
-
 
 const Dialogs = ({dialogs, messages, sendMessage}) => {
 
@@ -43,8 +41,5 @@ let mapDispatchToProps = (dispatch) => {
         }
     }
 }
-
-// let hocDialog = withAuthHoc(Dialogs)
-// export default connect(mapStateToProps, mapDispatchToProps)(hocDialog);
 
 export default compose(connect(mapStateToProps, mapDispatchToProps), withAuthHoc)(Dialogs)

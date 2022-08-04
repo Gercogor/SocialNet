@@ -16,7 +16,7 @@ import {initializeApp} from "./redux/appReducer";
 import Loader from "./components/Loader/Loader";
 import LazyLoadHoc from "./components/hoc/lazyLoadHoc";
 
-const Dialogs = React.lazy(() => import('./components/Dialog/Dialogs'));
+const Dialogs = React.lazy(() => import("./components/Dialog/Dialogs"));
 const Messenger = React.lazy(() => import("./components/Message/Message"));
 
 function App(props) {

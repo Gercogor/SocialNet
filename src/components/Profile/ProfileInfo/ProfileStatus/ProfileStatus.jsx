@@ -4,7 +4,7 @@ import styles from "./ProfileStatus.module.css";
 const ProfileStatus = (props) => {
 
     let [editMode, setEditMode] = useState(false)
-    let [newStatus, setNewStatus] = useState(`${props.status}`)
+    let [newStatus, setNewStatus] = useState(props.status)
 
     const handleChange = () => {
         if (props.canChangeStatus===true) setEditMode(true)
@@ -29,7 +29,7 @@ const ProfileStatus = (props) => {
                         }}
                         type="text"
                         onChange={(e)=>setNewStatus(e.target.value)}
-                        value={`${newStatus}`}
+                        value={newStatus}
                 />
                 :<span
                         onDoubleClick={handleChange}

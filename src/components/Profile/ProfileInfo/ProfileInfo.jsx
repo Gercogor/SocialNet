@@ -1,13 +1,18 @@
-import React from 'react';
+import React, {useState} from 'react';
 import styles from './ProfileInfo.module.css'
 import ProfileStatus from "./ProfileStatus/ProfileStatus";
 
 
 function ProfileInfo(props) {
 
-    let canChangeStatus = false;
+    let canChangeProfile = false;
+    let anySocial = false;
 
-    if (props.personalId === props.profile.userId) canChangeStatus = true;
+    const [modal, setModal] = useState(false)
+
+    if (props.personalId === props.profile.userId) {
+        canChangeProfile = true;
+    }
 
     return (
         <>
@@ -18,24 +23,50 @@ function ProfileInfo(props) {
             </div>
             <div className={styles.descr}>
                 <div className={styles.avatar}>
-                    <img src={props.profile.photos.small} alt="ava"/>
+                    {
+                        props.profile.photos.small
+                        ?<img src={props.profile.photos.small} alt="ava"/>
+                        :<img src='https://www.norbel.ru/assets/images/no_ava.png' alt="noAva"/>
+                    }
+                    {
+                        canChangeProfile
+                            ?<button onclick={()=>setModal(true)}>Edit profile</button>
+                            :undefined
+                    }
                 </div>
                 <div className={styles.aboutUser}>
                     <p className={styles.fullName}>{props.profile.fullName}</p>
-                    <p className={styles.fullName}>{props.profile.aboutMe}</p>
+                    {
+                        props.profile.aboutMe
+                        ?<p className={styles.fullName}>{props.profile.aboutMe}</p>
+                        : undefined
+                    }
+                    <ProfileStatus canChangeStatus={canChangeProfile} status={props.status} updateStatus={props.updateStatus}/>
                 </div>
+                <div className={styles.socialNet}>
+                    <p>My social net:</p>
+                    {
+                        Object.keys(props.profile.contacts).map((name)=>{
+                                if (props.profile.contacts[name]) {
+                                    anySocial = true;
+                                    return <p key={name} className={styles.netLink}><a href={props.profile.contacts[name]}>{name}</a></p>
+                                }
 
-                <div className={styles.lookingForJob}>
-                    <p>Looking for a job:
-                        {
-                            props.profile.lookingForAJob
-                                ?props.profile.lookingForAJobDescription
-                                :' NO'
-                        }
-                    </p>
-                    <ProfileStatus canChangeStatus={canChangeStatus} status={props.status} updateStatus={props.updateStatus}/>
+                        })
+                    }
+                    {
+                        anySocial ? undefined : <p className={styles.netLink}>No Social Net</p>
+                    }
                 </div>
-
+            </div>
+            <div className={styles.lookingForJob}>
+                <p>Looking for a job:
+                    {
+                        props.profile.lookingForAJob
+                            ?props.profile.lookingForAJobDescription
+                            :' NO'
+                    }
+                </p>
             </div>
         </>
     )
