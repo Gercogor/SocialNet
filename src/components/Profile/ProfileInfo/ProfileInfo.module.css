@@ -29,6 +29,10 @@ p {
     height: 100%;
 }
 
+.fullName {
+    padding: 5px 0 ;
+}
+
 .aboutUser {
     padding: 10px 25px;
     max-width: 250px;

@@ -1,6 +1,7 @@
 import React, {useState} from 'react';
 import styles from './ProfileInfo.module.css'
 import ProfileStatus from "./ProfileStatus/ProfileStatus";
+import EditProfileModal from "./EditProfileModal/EditProfileModal";
 
 
 function ProfileInfo(props) {
@@ -30,7 +31,7 @@ function ProfileInfo(props) {
                     }
                     {
                         canChangeProfile
-                            ?<button onclick={()=>setModal(true)}>Edit profile</button>
+                            ?<button onClick={()=>setModal(true)}>Edit profile</button>
                             :undefined
                     }
                 </div>
@@ -63,11 +64,12 @@ function ProfileInfo(props) {
                 <p>Looking for a job:
                     {
                         props.profile.lookingForAJob
-                            ?props.profile.lookingForAJobDescription
-                            :' NO'
+                            ? ' ' + props.profile.lookingForAJobDescription
+                            : ' NO'
                     }
                 </p>
             </div>
+            <EditProfileModal modal={modal} setModal={setModal}/>
         </>
     )
 }
