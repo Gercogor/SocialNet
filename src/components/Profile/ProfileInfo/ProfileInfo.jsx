@@ -69,7 +69,11 @@ function ProfileInfo(props) {
                     }
                 </p>
             </div>
-            <EditProfileModal modal={modal} setModal={setModal}/>
+            {
+                canChangeProfile
+                    ?<EditProfileModal modal={modal} setModal={setModal}/>
+                    :undefined
+            }
         </>
     )
 }
