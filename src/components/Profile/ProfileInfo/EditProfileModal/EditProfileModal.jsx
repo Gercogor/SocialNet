@@ -2,7 +2,7 @@ import React from 'react';
 import styles from './EditProfileModal.module.css'
 import {Field, Form} from "react-final-form";
 import {useDispatch, useSelector} from "react-redux";
-import {editUserProfileThunk, setUserProfileThunk} from "../../../../redux/profileReducer";
+import {editUserPhotoThunk, editUserProfileThunk} from "../../../../redux/profileReducer";
 
 function EditProfileModal({modal, setModal}) {
     const dispatch = useDispatch()
@@ -12,6 +12,13 @@ function EditProfileModal({modal, setModal}) {
 
     let onSubmit = (values) => {
         dispatch(editUserProfileThunk(values));
+        setModal(false);
+    }
+
+    let setNewPhoto = (e) => {
+        e.preventDefault();
+        let file = document.querySelector('#avatar').files[0]
+        dispatch(editUserPhotoThunk(file, profile.userId))
         setModal(false);
     }
 
@@ -164,19 +171,23 @@ function EditProfileModal({modal, setModal}) {
                                     </div>
                                 </label>
                             </div>
-
-
                             <button
                                 disabled={!changeStatus.includes(true)}
                             >
                                 Send
                             </button>
 
-                            <pre>{JSON.stringify(props.values, undefined, 2)}</pre>
+                            {/*<pre>{JSON.stringify(props.values, undefined, 2)}</pre>*/}
 
                         </form>
                     )}
                 />
+                <div style={{margin:"10px 0"}}></div>
+                <form onSubmit={setNewPhoto}>
+                    <label htmlFor="avatar">Set new photo:</label>
+                    <input id="avatar" name="avatar" type={'file'} accept="image/png, image/jpeg"/>
+                    <button>Set</button>
+                </form>
             </div>
         </div>
     );

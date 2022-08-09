@@ -89,6 +89,13 @@ export const editUserProfileThunk = (values) => (dispatch) => {
         })
 }
 
+export const editUserPhotoThunk = (file, userId) => (dispatch) => {
+    profileAPI.putPhoto(file)
+        .then(data => {
+            if ( data.resultCode === 0) dispatch(setUserProfileThunk(userId))
+        })
+}
+
 export const getStatusThunk = (id) => (dispatch) => {
     profileAPI.getStatus(id)
         .then(data => {

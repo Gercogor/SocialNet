@@ -36,6 +36,15 @@ export const profileAPI = {
     },
     editProfile(values) {
       return instance.put('profile', {...values}).then(response => response.data);
+    },
+    putPhoto (file) {
+        let formData = new FormData();
+        formData.append('image', file)
+        return instance.put('profile/photo', formData, {
+            headers: {
+                'Content-Type': 'multipart/form-data'
+            }
+        }).then(response => response.data);
     }
 }
 

@@ -25,34 +25,35 @@ function ProfileInfo(props) {
             <div className={styles.descr}>
                 <div className={styles.avatar}>
                     {
-                        props.profile.photos.small
-                        ?<img src={props.profile.photos.small} alt="ava"/>
-                        :<img src='https://www.norbel.ru/assets/images/no_ava.png' alt="noAva"/>
+                        props.profile.photos.large
+                            ? <img src={props.profile.photos.large} alt="ava"/>
+                            : <img src='https://www.norbel.ru/assets/images/no_ava.png' alt="noAva"/>
                     }
                     {
                         canChangeProfile
-                            ?<button onClick={()=>setModal(true)}>Edit profile</button>
-                            :undefined
+                            ? <button onClick={() => setModal(true)}>Edit profile</button>
+                            : undefined
                     }
                 </div>
                 <div className={styles.aboutUser}>
                     <p className={styles.fullName}>{props.profile.fullName}</p>
                     {
                         props.profile.aboutMe
-                        ?<p className={styles.fullName}>{props.profile.aboutMe}</p>
-                        : undefined
+                            ? <p className={styles.fullName}>{props.profile.aboutMe}</p>
+                            : undefined
                     }
-                    <ProfileStatus canChangeStatus={canChangeProfile} status={props.status} updateStatus={props.updateStatus}/>
+                    <ProfileStatus canChangeStatus={canChangeProfile} status={props.status}
+                                   updateStatus={props.updateStatus}/>
                 </div>
                 <div className={styles.socialNet}>
                     <p>My social net:</p>
                     {
-                        Object.keys(props.profile.contacts).map((name)=>{
-                                if (props.profile.contacts[name]) {
-                                    anySocial = true;
-                                    return <p key={name} className={styles.netLink}><a href={props.profile.contacts[name]}>{name}</a></p>
-                                }
-
+                        Object.keys(props.profile.contacts).map((name) => {
+                            if (props.profile.contacts[name]) {
+                                anySocial = true;
+                                return <p key={name} className={styles.netLink}><a
+                                    href={props.profile.contacts[name]}>{name}</a></p>
+                            }
                         })
                     }
                     {
@@ -71,8 +72,8 @@ function ProfileInfo(props) {
             </div>
             {
                 canChangeProfile
-                    ?<EditProfileModal modal={modal} setModal={setModal}/>
-                    :undefined
+                    ? <EditProfileModal modal={modal} setModal={setModal}/>
+                    : undefined
             }
         </>
     )
