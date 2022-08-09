@@ -34,7 +34,7 @@ export const setAuthUserData = (id, email, login, isAuth) => {
             id,
             email,
             login,
-            isAuth
+            isAuth,
         },
     }
 }

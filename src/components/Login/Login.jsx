@@ -1,7 +1,7 @@
 import React from 'react';
 import styles from './Login.module.css';
 import {Form, Field} from 'react-final-form';
-import {loginThunk, updateErrorMessage} from "../../redux/loginReducer";
+import {loginThunk} from "../../redux/loginReducer";
 import {connect} from "react-redux";
 
 const Login = (props) => {
@@ -11,6 +11,7 @@ const Login = (props) => {
     }
 
     const required = value => (value ? undefined : 'Required');
+    const captcha = props.captcha;
 
     return (
         <div className={styles.loginPage}>
@@ -60,11 +61,16 @@ const Login = (props) => {
                             <label>Remember</label>
                             <Field name="remember" component="input" type="checkbox"/>
                         </div>
-                        <div>
-                            {
-
-                            }
-                        </div>
+                        {console.log(captcha)}
+                        {
+                            captcha
+                                ? <div>
+                                    <label>Insert the Captcha</label>
+                                    <img src={captcha} alt=""/>
+                                    <Field name="captcha" component="input" type="text"/>
+                                </div>
+                                : undefined
+                        }
                         <button
                             className={styles.btnSubmit}
                             type='submit'
@@ -90,5 +96,6 @@ const Login = (props) => {
 let mapStateToProps = (state) => ({
     isAuth: state.auth.isAuth,
     errorText: state.login.errorText,
+    captcha: state.login.captchaUrl,
 })
-export default connect(mapStateToProps, {loginThunk, updateErrorMessage})(Login);
+export default connect(mapStateToProps, {loginThunk})(Login);
