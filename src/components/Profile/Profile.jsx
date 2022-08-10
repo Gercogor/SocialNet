@@ -4,16 +4,17 @@ import ProfileInfo from "./ProfileInfo/ProfileInfo";
 import MyPostsContainer from "./MyPosts/MyPostsContainer";
 import Loader from "../Loader/Loader";
 
-function Profile(props) {
+const Profile = (props) => {
 
-    if(!props.profile) {
+    if (!props.profile) {
         return <Loader/>
     }
 
     return (
         <div className={styles.profile}>
-            <ProfileInfo personalId={props.id} status={props.status} profile={props.profile} updateStatus={props.updateStatus}/>
-            <MyPostsContainer />
+            <ProfileInfo personalId={props.id} status={props.status} profile={props.profile}
+                         updateStatus={props.updateStatus}/>
+            <MyPostsContainer/>
         </div>
     )
 }

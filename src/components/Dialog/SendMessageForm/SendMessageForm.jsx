@@ -28,7 +28,6 @@ const SendMessageForm = (props) => {
                             />
                         )}
                     </Field>
-                    {/*<textarea ref={props.newMessage}></textarea>*/}
                     <button
                         className={styles.sendMessage}
                         disabled={props.submitting || props.pristine}

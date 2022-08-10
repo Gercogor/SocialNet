@@ -41,9 +41,7 @@ function App(props) {
                                 <Route path="/profile/:id" element={<ProfileContainer/>}/>
                                 <Route path="/profile/null"
                                        element={<Navigate to={props.id ? `/profile/` + props.id : `/login`}/>}/>
-                                {/*<Route path="/dialogs" element={<Dialogs/>}/>*/}
                                 <Route path="/dialogs" element={<LazyLoadHoc Component={Dialogs}/>}/>
-                                {/*<Route path="/dialogs/:id" element={<Messenger/>}/>*/}
                                 <Route path="/dialogs/:id" element={<LazyLoadHoc Component={Messenger}/>}/>
                                 <Route path="/users" element={<UsersContainer/>}/>
                                 <Route path="/login" element={props.id ? <Navigate to={`/profile`}/> : <Login/>}/>

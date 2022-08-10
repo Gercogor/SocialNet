@@ -8,7 +8,7 @@ import {connect} from "react-redux";
 import {withAuthHoc} from "../hoc/withAuthHoc";
 import {compose} from "redux";
 
-const Dialogs = ({dialogs, messages, sendMessage}) => {
+const Dialogs = ({dialogs, messages, addMessageActionCreator}) => {
 
     return (
         <div className={styles.dialogs}>
@@ -18,10 +18,10 @@ const Dialogs = ({dialogs, messages, sendMessage}) => {
                 )}
             </div>
             <div className={styles.messages}>
-                {messages.map(message =>
-                    <MessageItem key={message.id} message={message.text}/>
+                {messages.map((message,index) =>
+                    <MessageItem key={index} message={message.text}/>
                 )}
-                <SendMessageForm sendMessage={sendMessage}/>
+                <SendMessageForm sendMessage={addMessageActionCreator}/>
             </div>
         </div>
     )
@@ -34,12 +34,4 @@ let mapStateToProps = (state) => {
     }
 }
 
-let mapDispatchToProps = (dispatch) => {
-    return {
-        sendMessage: (text) => {
-            dispatch(addMessageActionCreator(text))
-        }
-    }
-}
-
-export default compose(connect(mapStateToProps, mapDispatchToProps), withAuthHoc)(Dialogs)
+export default compose(connect(mapStateToProps, {addMessageActionCreator}), withAuthHoc)(Dialogs)

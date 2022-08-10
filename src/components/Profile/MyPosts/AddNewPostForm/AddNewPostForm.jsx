@@ -2,16 +2,16 @@ import React from 'react';
 import {Field, Form} from "react-final-form";
 import styles from './AddNewPostForm.module.css'
 
-const AddNewPostForm = (props) => {
+const AddNewPostForm = ({addPost}) => {
 
     let onSubmit = (values) => {
-        props.addPost(values.post)
+        addPost(values.post)
     }
 
     return (
         <Form
             onSubmit={onSubmit}
-            validate={values=>{
+            validate={values => {
                 const errors = {}
                 if (values.post?.length > 30) {
                     errors.post = 'Too much symbols'
@@ -20,7 +20,7 @@ const AddNewPostForm = (props) => {
             }}
             render={(props) => (
                 <form className={styles.formPost}
-                      onSubmit={(e)=>{
+                      onSubmit={(e) => {
                           props.handleSubmit(e)
                           props.form.reset()
                       }}
@@ -34,7 +34,7 @@ const AddNewPostForm = (props) => {
                                 <textarea
                                     id='inputPost'
                                     maxLength="31"
-                                    className={`${styles.inputPost} ${meta.error?styles.error:undefined}`}
+                                    className={`${styles.inputPost} ${meta.error ? styles.error : undefined}`}
                                     {...input}
                                     placeholder="What are your thinking? Type here"
                                 />

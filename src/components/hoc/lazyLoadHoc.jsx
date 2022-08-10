@@ -1,10 +1,10 @@
 import React from 'react';
 import Loader from "../Loader/Loader";
 
-const LazyLoadHoc = ({Component}) => {
+const LazyLoadHoc = ({Component,...props}) => {
     return (
         <React.Suspense fallback={<Loader/>}>
-            <Component />
+            <Component {...props}/>
         </React.Suspense>
     );
 };

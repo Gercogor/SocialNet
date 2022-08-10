@@ -1,10 +1,12 @@
-import React, {useState} from 'react';
+import React, {lazy, useState, Suspense} from 'react';
 import styles from './ProfileInfo.module.css'
 import ProfileStatus from "./ProfileStatus/ProfileStatus";
-import EditProfileModal from "./EditProfileModal/EditProfileModal";
+import LazyLoadHoc from "../../hoc/lazyLoadHoc";
+
+const EditProfileModal = lazy(() => import('./EditProfileModal/EditProfileModal'))
 
 
-function ProfileInfo(props) {
+const ProfileInfo = (props) => {
 
     let canChangeProfile = false;
     let anySocial = false;
@@ -72,7 +74,7 @@ function ProfileInfo(props) {
             </div>
             {
                 canChangeProfile
-                    ? <EditProfileModal modal={modal} setModal={setModal}/>
+                    ? <LazyLoadHoc Component={EditProfileModal} modal={modal} setModal={setModal}/>
                     : undefined
             }
         </>
